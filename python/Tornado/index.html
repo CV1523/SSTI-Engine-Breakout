@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSTI Lab - Tornado Engine</title>
+    <style>
+        body { background-color: #121212; color: #e0e0e0; font-family: sans-serif; padding: 40px; }
+        .container { max-width: 800px; margin: 0 auto; background: #1e1e1e; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        h1 { color: #a2d2ff; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        input[type="text"] { width: 100%; padding: 12px; background: #2d2d2d; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; }
+        button { background: #a2d2ff; color: #121212; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #bde0fe; }
+        .box { margin-top: 20px; padding: 15px; border-radius: 4px; font-family: monospace; white-space: pre-wrap; word-break: break-all; }
+        .success { background: #1b4332; border: 1px solid #2d6a4f; color: #d8f3dc; }
+        .error { background: #4a1212; border: 1px solid #7f1d1d; color: #fca5a5; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SSTI Testing Console (Tornado Engine)</h1>
+        <p>Enter your Tornado template directives or expressions below:</p>
+        
+        <input type="text" id="payloadInput" placeholder="e.g., {{7*7}} or {% modules %}" />
+        <button onclick="sendPayload()">Submit to API</button>
+        
+        <h3>Backend Response Output:</h3>
+        <div id="outputBox" style="display:none;" class="box"></div>
+    </div>
+
+    <script>
+        async function sendPayload() {
+            const payload = document.getElementById('payloadInput').value;
+            const outputBox = document.getElementById('outputBox');
+            const targetUrl = `/api/render?payload=${encodeURIComponent(payload)}`;
+            
+            try {
+                const response = await fetch(targetUrl);
+                const data = await response.json();
+                
+                outputBox.style.display = "block";
+                if (data.status === "success") {
+                    outputBox.className = "box success";
+                    outputBox.innerText = data.result;
+                } else {
+                    outputBox.className = "box error";
+                    outputBox.innerText = "[SERVER ERROR 500]\n" + data.error_message;
+                }
+            } catch (err) {
+                outputBox.style.display = "block";
+                outputBox.className = "box error";
+                outputBox.innerText = "[FETCH ERROR] Could not reach backend API.\n" + err.toString();
+            }
+        }
+    </script>
+</body>
+</html>
