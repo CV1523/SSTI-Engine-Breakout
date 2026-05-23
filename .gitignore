@@ -19,3 +19,8 @@ ENV/
 .vscode/
 .idea/
 *.swp
+
+# Ignore Blade specific dependencies and dynamic files
+php/Blade/vendor/
+php/Blade/cache/*
+php/Blade/views/exploit.blade.php

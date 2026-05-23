@@ -1,0 +1,7 @@
+{
+    "name": "lab/blade-ssti",
+    "require": {
+        "illuminate/view": "^13.11",
+        "illuminate/events": "^13.11"
+    }
+}
