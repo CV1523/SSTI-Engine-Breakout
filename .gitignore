@@ -24,3 +24,8 @@ ENV/
 php/Blade/vendor/
 php/Blade/cache/*
 php/Blade/views/exploit.blade.php
+
+# Ignore Latte dependencies and runtime caches
+php/Latte/vendor/
+php/Latte/temp/
+php/Latte/temp_exploit.latte

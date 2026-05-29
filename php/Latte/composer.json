@@ -1,0 +1,6 @@
+{
+    "name": "lab/latte-ssti",
+    "require": {
+        "latte/latte": "^3.1"
+    }
+}
